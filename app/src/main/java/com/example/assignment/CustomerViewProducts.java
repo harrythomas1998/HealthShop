@@ -14,7 +14,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class AdminViewStock extends AppCompatActivity implements StockAdapter.OnItemClickListener, ArrayInterface  {
+public class CustomerViewProducts extends AppCompatActivity implements StockAdapter.OnItemClickListener, ArrayInterface  {
 
 
     private RecyclerView recyclerView;
@@ -33,10 +33,10 @@ public class AdminViewStock extends AppCompatActivity implements StockAdapter.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_view_stock);
+        setContentView(R.layout.activity_customer_view_products);
 
 
-        recyclerView = findViewById(R.id.stockRecyclerAdmin);
+        recyclerView = findViewById(R.id.productsRecycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -58,9 +58,9 @@ public class AdminViewStock extends AppCompatActivity implements StockAdapter.On
                     stockItems.add(stockItem);
                 }
 
-                stockAdapter = new StockAdapter(AdminViewStock.this, stockItems);
+                stockAdapter = new StockAdapter(CustomerViewProducts.this, stockItems);
                 recyclerView.setAdapter(stockAdapter);
-                stockAdapter.setOnItemClickListener(AdminViewStock.this);
+                stockAdapter.setOnItemClickListener(CustomerViewProducts.this);
 
             }
 
@@ -75,7 +75,7 @@ public class AdminViewStock extends AppCompatActivity implements StockAdapter.On
     @Override
     public void onItemClick(int position) {
 
-        Intent i = new Intent(AdminViewStock.this, AdminViewStock.class );
+        Intent i = new Intent(CustomerViewProducts.this, AdminViewStock.class );
         StockItem clickedStocKItem = stockItems.get(position);
 
         i.putExtra(TITLE, clickedStocKItem.getName());
@@ -89,3 +89,4 @@ public class AdminViewStock extends AppCompatActivity implements StockAdapter.On
 
     }
 }
+

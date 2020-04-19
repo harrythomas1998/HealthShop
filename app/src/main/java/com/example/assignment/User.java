@@ -4,11 +4,11 @@ import com.google.firebase.database.Exclude;
 
 public class User {
 
-    String email;
-    String firstName;
-    String lastName;
-    String key;
-    Address address;
+    private String email;
+    private String firstName;
+    private String lastName;
+    private String key;
+    private Address address;
 
 
     public User(){

@@ -20,6 +20,17 @@ public class AdminHome extends AppCompatActivity {
         b2 = findViewById(R.id.viewCustomerDetail);
 
 
+
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent i = new Intent(AdminHome.this, AdminViewStock.class);
+                startActivity(i);
+            }
+        });
+
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -29,5 +40,6 @@ public class AdminHome extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
     }
 }

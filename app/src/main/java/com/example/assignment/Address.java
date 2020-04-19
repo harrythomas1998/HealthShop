@@ -2,10 +2,10 @@ package com.example.assignment;
 
 public class Address {
 
-    String line1;
-    String town;
-    String county;
-    String eircode;
+    private String line1;
+    private String town;
+    private String county;
+    private String eircode;
 
     public Address(){}
 
