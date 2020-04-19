@@ -34,12 +34,6 @@ public class Login extends AppCompatActivity {
         email = findViewById(R.id.loginEmail);
         password = findViewById(R.id.loginPassword);
         loginButton = findViewById(R.id.loginButton);
-
-
-
-        String e = email.getText().toString();
-        String p = password.getText().toString();
-
         mFirebaseAuth = FirebaseAuth.getInstance();
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
@@ -78,6 +72,11 @@ public class Login extends AppCompatActivity {
                 else if(passwordText.contains(" ")){
                     Toast.makeText(getApplicationContext(),"Password cannot have a space!",Toast.LENGTH_LONG).show();
                     password.requestFocus();
+                }
+                else if(emailText.equals("Admin") && passwordText.equals("adminp123")){
+
+                    Intent intToHome = new Intent(Login.this, AdminHome.class);
+                    startActivity(intToHome);
                 }
                 else {
                     mFirebaseAuth.signInWithEmailAndPassword(emailText, passwordText).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
