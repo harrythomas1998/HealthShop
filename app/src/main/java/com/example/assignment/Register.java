@@ -89,7 +89,7 @@ public class Register extends AppCompatActivity {
                             }
                             else{
 
-                                User user = new User(firstNameText, lastNameText, emailText, a1);
+                                User user = new User(emailText, firstNameText, lastNameText, a1);
 
                                 databaseReference.child(FirebaseAuth.getInstance().getCurrentUser()
 

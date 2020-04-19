@@ -1,10 +1,13 @@
 package com.example.assignment;
 
+import com.google.firebase.database.Exclude;
+
 public class User {
 
     String email;
     String firstName;
     String lastName;
+    String key;
     Address address;
 
 
@@ -49,5 +52,13 @@ public class User {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    @Exclude
+    public String getKey(){ return key; }
+
+    @Exclude
+    public void setKey(String key) {
+        this.key = key;
     }
 }
