@@ -20,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Register extends AppCompatActivity {
 
     EditText fName, lName, password, email;
+    EditText line1, town, county, eircode;
     Button registerButton;
 
     FirebaseAuth mFirebaseAuth;
@@ -38,6 +39,11 @@ public class Register extends AppCompatActivity {
         email = findViewById(R.id.registerEmail);
         password = findViewById(R.id.registerPassword);
 
+        line1 = findViewById(R.id.registerLine1);
+        town = findViewById(R.id.registertown);
+        county = findViewById(R.id.registerCounty);
+        eircode = findViewById(R.id.registerEircode);
+
         registerButton = findViewById(R.id.registerButton);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +55,14 @@ public class Register extends AppCompatActivity {
                 String passwordText = password.getText().toString();
                 final String firstNameText = fName.getText().toString();
                 final String lastNameText = lName.getText().toString();
+
+                final String line1txt = line1.getText().toString();
+                String towntxt = town.getText().toString();
+                final String countytxt = county.getText().toString();
+                final String eircodetxt = eircode.getText().toString();
+
+                final Address a1 = new Address(line1txt, towntxt, countytxt, eircodetxt);
+
 
 
                 if(emailText.isEmpty() || passwordText.isEmpty() || firstNameText.isEmpty() || lastNameText.isEmpty()){
@@ -75,7 +89,7 @@ public class Register extends AppCompatActivity {
                             }
                             else{
 
-                                User user = new User(firstNameText, lastNameText, emailText);
+                                User user = new User(firstNameText, lastNameText, emailText, a1);
 
                                 databaseReference.child(FirebaseAuth.getInstance().getCurrentUser()
 
