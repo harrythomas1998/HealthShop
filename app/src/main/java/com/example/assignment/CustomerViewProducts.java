@@ -93,16 +93,17 @@ public class CustomerViewProducts extends AppCompatActivity implements StockAdap
     @Override
     public void onItemClick(int position) {
 
-        Intent i = new Intent(CustomerViewProducts.this, AdminViewStock.class );
+        Intent i = new Intent(CustomerViewProducts.this, ViewStockItemCustomer.class );
         StockItem clickedStocKItem = stockItems.get(position);
 
         i.putExtra(TITLE, clickedStocKItem.getName());
         i.putExtra(BRAND, clickedStocKItem.getBrand());
-        i.putExtra(CATEGORY, clickedStocKItem.getPrice());
+        i.putExtra(CATEGORY, clickedStocKItem.getCategory());
         i.putExtra(PRICE, clickedStocKItem.getPrice());
         i.putExtra(STOCK, clickedStocKItem.getStock());
         i.putExtra(IMAGE, clickedStocKItem.getImage());
 
+        startActivity(i);
 
 
     }

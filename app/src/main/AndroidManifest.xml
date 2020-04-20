@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CustomerViewProducts"></activity>
+        <activity android:name=".ViewStockItemAdmin"></activity>
+        <activity android:name=".ViewStockItemCustomer" />
+        <activity android:name=".CustomerViewProducts" />
         <activity android:name=".CustomerView" />
         <activity android:name=".ViewCustomers" />
         <activity android:name=".AdminViewStock" />

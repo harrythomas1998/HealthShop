@@ -92,17 +92,17 @@ public class AdminViewStock extends AppCompatActivity implements StockAdapter.On
     @Override
     public void onItemClick(int position) {
 
-        Intent i = new Intent(AdminViewStock.this, AdminViewStock.class );
+        Intent i = new Intent(AdminViewStock.this, ViewStockItemAdmin.class );
         StockItem clickedStocKItem = stockItems.get(position);
 
         i.putExtra(TITLE, clickedStocKItem.getName());
         i.putExtra(BRAND, clickedStocKItem.getBrand());
-        i.putExtra(CATEGORY, clickedStocKItem.getPrice());
+        i.putExtra(CATEGORY, clickedStocKItem.getCategory());
         i.putExtra(PRICE, clickedStocKItem.getPrice());
         i.putExtra(STOCK, clickedStocKItem.getStock());
         i.putExtra(IMAGE, clickedStocKItem.getImage());
 
-
+        startActivity(i);
 
     }
 }
