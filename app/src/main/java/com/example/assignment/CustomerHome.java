@@ -17,6 +17,7 @@ public class CustomerHome extends AppCompatActivity {
         setContentView(R.layout.activity_customer_home);
 
         products = findViewById(R.id.view_products);
+        bag = findViewById(R.id.view_my_bag);
 
         products.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -24,6 +25,16 @@ public class CustomerHome extends AppCompatActivity {
 
                 Intent i = new Intent(CustomerHome.this, CustomerViewProducts.class);
                 startActivity(i);
+            }
+        });
+
+        bag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(CustomerHome.this, ShoppingCart.class);
+                startActivity(i);
+
             }
         });
     }
