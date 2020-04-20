@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.SearchView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -19,6 +20,7 @@ public class CustomerViewProducts extends AppCompatActivity implements StockAdap
 
     private RecyclerView recyclerView;
     private StockAdapter stockAdapter;
+    SearchView search;
 
     DatabaseReference reference;
     private FirebaseAuth firebaseAuth;
@@ -39,6 +41,8 @@ public class CustomerViewProducts extends AppCompatActivity implements StockAdap
         recyclerView = findViewById(R.id.productsRecycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        search = findViewById(R.id.searchViewProducts);
 
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -69,6 +73,20 @@ public class CustomerViewProducts extends AppCompatActivity implements StockAdap
 
             }
         });
+
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                stockAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
 
     }
 

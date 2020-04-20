@@ -13,7 +13,15 @@
         android:text=" View Stock Items"
         android:textColor="#000"
         android:textStyle="bold"
+        android:background="#69A730"
         android:textSize="30sp"/>
+
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#69A730"
+        android:queryHint="Search Here"
+        android:id="@+id/searchViewStock"/>
 
 
     <androidx.recyclerview.widget.RecyclerView

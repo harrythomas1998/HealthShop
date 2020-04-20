@@ -7,13 +7,24 @@
     android:orientation="vertical"
     tools:context=".CustomerViewProducts">
 
+
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=" View Products"
         android:textColor="#000"
+        android:background="#69A730"
         android:textStyle="bold"
         android:textSize="30sp"/>
+
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#69A730"
+        android:queryHint="Search Here"
+        android:id="@+id/searchViewProducts"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

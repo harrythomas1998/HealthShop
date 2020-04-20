@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,13 +15,59 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class StockAdapter extends RecyclerView.Adapter<StockAdapter.Viewholder> {
+public class StockAdapter extends RecyclerView.Adapter<StockAdapter.Viewholder> implements Filterable {
 
 
     private Context mContext;
     private ArrayList<StockItem> stockItems;
+    private ArrayList<StockItem> stock2;
     private OnItemClickListener mListener;
+
+    @Override
+    public Filter getFilter() {
+        return exampleFilter;
+    }
+
+    private Filter exampleFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<StockItem> filteredList = new ArrayList<>();
+
+            if(constraint == null || constraint.length() == 0){
+                filteredList.addAll(stock2);
+            }
+            else{
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for(StockItem stockItem : stock2){
+                    if(stockItem.getName().toLowerCase().contains(filterPattern)){
+                        filteredList.add(stockItem);
+                    }
+                    else if(stockItem.getCategory().toLowerCase().contains(filterPattern)){
+                        filteredList.add(stockItem);
+                    }
+                    else if(stockItem.getBrand().toLowerCase().contains(filterPattern)){
+                        filteredList.add(stockItem);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+
+            stockItems.clear();
+            stockItems.addAll((List)results.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public interface OnItemClickListener{
 
@@ -35,6 +83,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.Viewholder> 
 
         mContext = context;
         stockItems = jobList;
+        stock2 = new ArrayList<>(stockItems);
     }
 
     @NonNull
