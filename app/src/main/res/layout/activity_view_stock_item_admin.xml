@@ -151,7 +151,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="10">
+        android:layout_weight="10"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/edit_stock_button"
@@ -160,7 +161,26 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:text="Edit Stock Level"
-            android:textColor="#000" />
+            android:textColor="#000"
+            android:layout_weight="2"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="-"
+            android:textSize="20sp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/minusStockButton"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:text="+"
+            android:layout_marginRight="10dp"
+            android:id="@+id/addStockButton"/>
 
     </LinearLayout>
 

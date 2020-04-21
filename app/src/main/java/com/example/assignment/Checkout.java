@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -43,7 +44,6 @@ public class Checkout extends AppCompatActivity implements ArrayInterface {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
 
-        Toast.makeText(Checkout.this, "Got here", Toast.LENGTH_LONG).show();
 
         nameOnCard = findViewById(R.id.checkout_name_on_card);
         numCard = findViewById(R.id.checkout_card_num);
@@ -114,6 +114,7 @@ public class Checkout extends AppCompatActivity implements ArrayInterface {
 
         ref3 = FirebaseDatabase.getInstance().getReference().child("ShoppingCart").child(user.getUid());
 
+
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,10 +126,11 @@ public class Checkout extends AppCompatActivity implements ArrayInterface {
 
                 ref3.removeValue();
 
-
                 Toast.makeText(Checkout.this, "Order Confirmed!", Toast.LENGTH_LONG).show();
 
             }
+
+
         });
 
 

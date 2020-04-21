@@ -41,7 +41,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="60dp"
         android:layout_marginRight="60dp"
-        android:id="@+id/addProctsButton"
-        android:text="Add Products"/>
+        android:id="@+id/viewOrdersButton"
+        android:text="View Orders"/>
 
 </LinearLayout>

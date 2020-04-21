@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class AdminHome extends AppCompatActivity {
 
-    Button b1, b2;
+    Button b1, b2, b3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +18,8 @@ public class AdminHome extends AppCompatActivity {
 
         b1 = findViewById(R.id.stockButton);
         b2 = findViewById(R.id.viewCustomerDetail);
+        b3 = findViewById(R.id.viewOrdersButton);
+
 
 
 

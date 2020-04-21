@@ -31,6 +31,7 @@ public class AdminViewStock extends AppCompatActivity implements StockAdapter.On
     public static final String  PRICE = "price";
     public static final String STOCK = "stock";
     public static final String IMAGE = "image";
+    public static final String KEY = "key";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +102,7 @@ public class AdminViewStock extends AppCompatActivity implements StockAdapter.On
         i.putExtra(PRICE, clickedStocKItem.getPrice());
         i.putExtra(STOCK, clickedStocKItem.getStock());
         i.putExtra(IMAGE, clickedStocKItem.getImage());
+        i.putExtra(KEY, clickedStocKItem.getKey());
 
         startActivity(i);
 
