@@ -84,7 +84,15 @@ public class ShoppingCart extends AppCompatActivity implements  ShoppingCartAdap
                 }
                 adapter.notifyDataSetChanged();
 
-                totalNum.setText("Total: €" + total);
+                if(total > 50.0){
+
+                    totalNum.setText("Total: €" + total/.9);
+                }
+                else{
+
+                    totalNum.setText("Total: €" + total);
+                }
+
 
             }
 
