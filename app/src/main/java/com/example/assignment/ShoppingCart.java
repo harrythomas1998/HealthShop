@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,6 +25,7 @@ public class ShoppingCart extends AppCompatActivity implements  StockAdapter.OnI
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
     TextView totalNum;
+    Button b1;
 
     private RecyclerView recyclerView;
     private StockAdapter adapter;
@@ -33,6 +38,8 @@ public class ShoppingCart extends AppCompatActivity implements  StockAdapter.OnI
     public static final String  PRICE = "price";
     public static final String STOCK = "stock";
     public static final String IMAGE = "image";
+    public static final String TOTAL = "total";
+
 
 
     @Override
@@ -52,6 +59,8 @@ public class ShoppingCart extends AppCompatActivity implements  StockAdapter.OnI
         adapter.setOnItemClickListener(ShoppingCart.this);
 
         totalNum = findViewById(R.id.totalTextBox);
+
+        b1 = findViewById(R.id.checkoutButton);
 
 
 
@@ -82,6 +91,19 @@ public class ShoppingCart extends AppCompatActivity implements  StockAdapter.OnI
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
+            }
+        });
+
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(ShoppingCart.this, Checkout.class);
+                i.putExtra(TOTAL, total);
+
+                startActivity(i);
+
+                Toast.makeText(ShoppingCart.this, "Gone to next class", Toast.LENGTH_LONG).show();
             }
         });
     }
