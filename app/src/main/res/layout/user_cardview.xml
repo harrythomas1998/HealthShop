@@ -63,7 +63,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="No of Orders: "
+                android:text="Address: "
                 android:textSize="14dp"
                 android:textStyle="bold"
                 android:textColor="#000"
@@ -95,7 +95,28 @@
                 android:textColor="#000"/>
 
             <TextView
-                android:id="@+id/noOfOrdersCardView"
+                android:id="@+id/line1_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:textColor="#000"/>
+
+            <TextView
+                android:id="@+id/town_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:textColor="#000"/>
+
+            <TextView
+                android:id="@+id/county_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:textColor="#000"/>
+
+            <TextView
+                android:id="@+id/eircode_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14dp"
@@ -103,6 +124,9 @@
 
 
         </LinearLayout>
+
+
+
 
     </LinearLayout>
 

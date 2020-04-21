@@ -1,6 +1,8 @@
 package com.example.assignment;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,18 +25,23 @@ import static com.example.assignment.CustomerViewProducts.PRICE;
 import static com.example.assignment.CustomerViewProducts.STOCK;
 import static com.example.assignment.CustomerViewProducts.TITLE;
 
-public class ViewStockItemCustomer extends AppCompatActivity {
+public class ViewStockItemCustomer extends AppCompatActivity implements ArrayInterface {
 
     TextView nameBox, brandBox, categoryBox, stockBox, priceBox;
     ImageView imageBox;
 
-    Button b1;
+    Button b1, b2;
 
     StockItem stockItem;
 
     private FirebaseUser mCurrentUser;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference myRef;
+
+    private RecyclerView recyclerView;
+    private ReviewAdapter reviewAdapter;
+
+    public static final String NAME = "name";
 
 
     @Override
@@ -43,6 +50,7 @@ public class ViewStockItemCustomer extends AppCompatActivity {
         setContentView(R.layout.activity_view_stock_item_customer);
 
         b1 = findViewById(R.id.add_to_shopping_bag);
+        b2 = findViewById(R.id.add_review_customer);
 
         nameBox = findViewById(R.id.view_stock_item_customer_name);
         brandBox = findViewById(R.id.view_stock_item_customer_brand);
@@ -67,6 +75,57 @@ public class ViewStockItemCustomer extends AppCompatActivity {
         stockBox.setText(stock + "");
         priceBox.setText("€" + price);
 
+        recyclerView = findViewById(R.id.reviewsRecycler);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        assert name != null;
+        if(name.equals("Kids MultiVitamin")) {
+
+            reviewAdapter = new ReviewAdapter(ViewStockItemCustomer.this, reviewsProduct1);
+            recyclerView.setAdapter(reviewAdapter);
+        }
+        if(name.equals("Ester-C")) {
+
+            reviewAdapter = new ReviewAdapter(ViewStockItemCustomer.this, reviewsProduct2);
+            recyclerView.setAdapter(reviewAdapter);
+        }
+        if(name.equals("Ante Natal Support")) {
+
+            reviewAdapter = new ReviewAdapter(ViewStockItemCustomer.this, reviewsProduct3);
+            recyclerView.setAdapter(reviewAdapter);
+        }
+        if(name.equals("Balanced Zinc Complex")) {
+
+            reviewAdapter = new ReviewAdapter(ViewStockItemCustomer.this, reviewsProduct4);
+            recyclerView.setAdapter(reviewAdapter);
+        }
+        if(name.equals("Gentle Iron")) {
+
+            reviewAdapter = new ReviewAdapter(ViewStockItemCustomer.this, reviewsProduct5);
+            recyclerView.setAdapter(reviewAdapter);
+        }
+        if(name.equals("Magnesium Citrate")) {
+
+            reviewAdapter = new ReviewAdapter(ViewStockItemCustomer.this, reviewsProduct6);
+            recyclerView.setAdapter(reviewAdapter);
+        }
+        if(name.equals("Pro Performance Chocolate")) {
+
+            reviewAdapter = new ReviewAdapter(ViewStockItemCustomer.this, reviewsProduct7);
+            recyclerView.setAdapter(reviewAdapter);
+        }
+        if(name.equals("Lean Shake Strawberry")) {
+
+            reviewAdapter = new ReviewAdapter(ViewStockItemCustomer.this, reviewsProduct8);
+            recyclerView.setAdapter(reviewAdapter);
+        }
+        if(name.equals("Vegan Lean Shake Vanilla")) {
+
+            reviewAdapter = new ReviewAdapter(ViewStockItemCustomer.this, reviewsProduct9);
+            recyclerView.setAdapter(reviewAdapter);
+        }
+
 
         stockItem = new StockItem();
 
@@ -89,6 +148,16 @@ public class ViewStockItemCustomer extends AppCompatActivity {
                 myRef.push().setValue(stockItem);
 
                 Toast.makeText(ViewStockItemCustomer.this, "Added to your Cart!", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(ViewStockItemCustomer.this, ReviewActivity.class);
+                i.putExtra(NAME, name);
+                startActivity(i);
             }
         });
     }

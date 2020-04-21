@@ -3,13 +3,15 @@ package com.example.assignment;
 public class Review {
 
     private String reviewText;
-    private int rating;
+    private String rating;
+
 
     private StockItem stockItem;
 
     public Review(){}
 
-    public Review(String reviewText, int rating, StockItem stockItem) {
+    public Review(String reviewText, String rating, StockItem stockItem) {
+
         this.reviewText = reviewText;
         this.rating = rating;
         this.stockItem = stockItem;
@@ -23,11 +25,11 @@ public class Review {
         this.reviewText = reviewText;
     }
 
-    public int getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
 
@@ -38,4 +40,6 @@ public class Review {
     public void setStockItem(StockItem stockItem) {
         this.stockItem = stockItem;
     }
+
+
 }
