@@ -19,7 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class ShoppingCart extends AppCompatActivity implements  StockAdapter.OnItemClickListener, ArrayInterface {
+public class ShoppingCart extends AppCompatActivity implements  ShoppingCartAdapter.OnItemClickListener, ArrayInterface {
 
     DatabaseReference reference;
     FirebaseAuth firebaseAuth;
@@ -28,7 +28,7 @@ public class ShoppingCart extends AppCompatActivity implements  StockAdapter.OnI
     Button b1;
 
     private RecyclerView recyclerView;
-    private StockAdapter adapter;
+    private ShoppingCartAdapter adapter;
 
     double total;
 
@@ -54,7 +54,7 @@ public class ShoppingCart extends AppCompatActivity implements  StockAdapter.OnI
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
 
-        adapter = new StockAdapter(ShoppingCart.this, shoppingCart);
+        adapter = new ShoppingCartAdapter(ShoppingCart.this, shoppingCart);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(ShoppingCart.this);
 
@@ -111,5 +111,23 @@ public class ShoppingCart extends AppCompatActivity implements  StockAdapter.OnI
     @Override
     public void onItemClick(int position) {
 
+    }
+
+    @Override
+    public void onDeleteClick(int position) {
+
+        StockItem selectedItem = shoppingCart.get(position);
+        String selectedKey = selectedItem.getKey();
+        reference.child(selectedKey).removeValue();
+        removeItem(position);
+
+        Toast.makeText(this, "Product Removed", Toast.LENGTH_SHORT).show();
+
+    }
+
+    public void removeItem(int position){
+
+        shoppingCart.remove(position);
+        adapter.notifyDataSetChanged();
     }
 }

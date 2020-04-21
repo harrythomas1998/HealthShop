@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:weightSum="2"
     app:cardCornerRadius="3dp"
     app:cardElevation="3dp"
     app:cardUseCompatPadding="true">
@@ -31,7 +30,7 @@
                 app:cardElevation="3dp">
 
                 <ImageView
-                    android:id="@+id/stock_image"
+                    android:id="@+id/cart_stock_image"
                     android:layout_width="130dp"
                     android:layout_height="130dp" />
 
@@ -51,7 +50,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/stock_title"
+                android:id="@+id/cart_stock_title"
                 android:textStyle="bold"
                 android:textAllCaps="true"
                 android:textColor="#000"
@@ -62,7 +61,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/stock_brand"
+                android:id="@+id/cart_stock_brand"
                 android:textAllCaps="true"
                 android:textColor="#000"
                 android:layout_weight="1"
@@ -72,7 +71,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/stock_category"
+                android:id="@+id/cart_stock_category"
                 android:textAllCaps="true"
                 android:textColor="#000"
                 android:layout_weight="1"
@@ -82,18 +81,26 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/stock_price"
+                android:id="@+id/cart_stock_price"
                 android:textStyle="bold"
                 android:textAllCaps="true"
                 android:textColor="#000"
                 android:layout_weight="1"
                 android:textSize="20sp"
                 android:layout_marginTop="15dp" />
-            </LinearLayout>
 
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:src="@drawable/delete"
+                android:id="@+id/deleteButton"/>
 
 
         </LinearLayout>
 
+
+
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>
