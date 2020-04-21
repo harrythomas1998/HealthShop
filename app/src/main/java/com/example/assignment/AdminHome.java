@@ -43,5 +43,15 @@ public class AdminHome extends AppCompatActivity {
             }
         });
 
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(AdminHome.this, ViewAllOrders.class);
+                startActivity(i);
+
+            }
+        });
+
     }
 }

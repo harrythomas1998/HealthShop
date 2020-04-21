@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 public class CustomerView extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

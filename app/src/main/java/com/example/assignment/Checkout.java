@@ -37,7 +37,7 @@ public class Checkout extends AppCompatActivity implements ArrayInterface {
 
     private FirebaseUser user;
     private FirebaseAuth firebaseAuth;
-    private DatabaseReference reference, ref2, ref3;
+    private DatabaseReference reference, ref2, ref3, ref4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +113,7 @@ public class Checkout extends AppCompatActivity implements ArrayInterface {
         ref2 = FirebaseDatabase.getInstance().getReference().child("Orders");
 
         ref3 = FirebaseDatabase.getInstance().getReference().child("ShoppingCart").child(user.getUid());
+        ref3 = FirebaseDatabase.getInstance().getReference().child("ShoppingCart").child(user.getUid()).child("Orders");
 
 
         b1.setOnClickListener(new View.OnClickListener() {
@@ -125,6 +126,8 @@ public class Checkout extends AppCompatActivity implements ArrayInterface {
                 ref2.push().setValue(order);
 
                 ref3.removeValue();
+
+                ref4.push().setValue(order);
 
                 Toast.makeText(Checkout.this, "Order Confirmed!", Toast.LENGTH_LONG).show();
 

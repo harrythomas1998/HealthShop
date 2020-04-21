@@ -62,15 +62,7 @@ public class ViewStockItemAdmin extends AppCompatActivity {
         priceBox.setText("€" + price);
 
 
-        b1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                Intent i = new Intent(ViewStockItemAdmin.this, EditStock.class);
-                intent.putExtra(KEY2, key);
-                startActivity(i);
-            }
-        });
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
