@@ -26,14 +26,7 @@
         android:id="@+id/view_products"
         android:text="View Products"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp"
-        android:id="@+id/view_my_orders"
-        android:text="View My Orders"/>
+
 
     <Button
         android:layout_width="match_parent"
@@ -42,6 +35,6 @@
         android:layout_marginLeft="60dp"
         android:layout_marginRight="60dp"
         android:id="@+id/view_my_bag"
-        android:text="View My Bag"/>
+        android:text="View My Cart"/>
 
 </LinearLayout>
