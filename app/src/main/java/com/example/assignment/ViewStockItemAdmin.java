@@ -62,7 +62,16 @@ public class ViewStockItemAdmin extends AppCompatActivity {
         priceBox.setText("€" + price);
 
 
+        boolean state;
+        StockState noStock = new OutOfStock();
+        StockState hasStock = new InStock();
 
+        if (stock <= 0) {
+            state = noStock.stateOfStock();
+        }
+        else {
+            state = hasStock.stateOfStock();
+        }
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
