@@ -148,10 +148,10 @@ public class Checkout extends AppCompatActivity implements ArrayInterface {
                     validator = new VisaValidation(nameCard, cardNum, m, y, c);
 
                 } else if (method.equals("MasterCard")) {
-                    validator = new VisaValidation(nameCard, cardNum, m, y, c);
+                    validator = new MastercardValidation(nameCard, cardNum, m, y, c);
 
                 } else if (method.equals("American Express")) {
-                    validator = new VisaValidation(nameCard, cardNum, m, y, c);
+                    validator = new AmericanExpressValidation(nameCard, cardNum, m, y, c);
 
                 }
 
