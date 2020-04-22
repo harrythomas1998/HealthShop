@@ -35,6 +35,8 @@ public class Checkout extends AppCompatActivity implements ArrayInterface {
 
     Order order;
     Card card;
+
+    String method;
     ArrayList<StockItem> sItems;
 
     private FirebaseUser user;
@@ -80,7 +82,7 @@ public class Checkout extends AppCompatActivity implements ArrayInterface {
         s1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                 String method = s1.getSelectedItem().toString();
+                 method = s1.getSelectedItem().toString();
 
                 order.setPaymentMethod(method);
             }
@@ -132,23 +134,50 @@ public class Checkout extends AppCompatActivity implements ArrayInterface {
             public void onClick(View v) {
 
                 String nameCard = nameOnCard.getText().toString();
-                int cardNum = Integer.parseInt(numCard.getText().toString());
-                int c = Integer.parseInt(cvv.getText().toString());
+                String cardNum = numCard.getText().toString();
+                String c = cvv.getText().toString();
                 int y = Integer.parseInt(year.getText().toString());
                 int m = Integer.parseInt(month.getText().toString());
 
-                card.setCardNum(cardNum);
-                card.setCvv(c);
-                card.setExpiryMonth(m);
-                card.setExpiryYear(y);
-                card.setNameOnCard(nameCard);
 
-                ref2.push().setValue(order);
 
-                ref3.removeValue();
+                boolean result = false;
+                AbstractCardValidator validator = null;
 
-                ref4.push().setValue(card);
-                Toast.makeText(Checkout.this, "Order Confirmed!", Toast.LENGTH_LONG).show();
+                if (method.equals("Visa")) {
+                    validator = new VisaValidation(nameCard, cardNum, m, y, c);
+
+                } else if (method.equals("MasterCard")) {
+                    validator = new VisaValidation(nameCard, cardNum, m, y, c);
+
+                } else if (method.equals("American Express")) {
+                    validator = new VisaValidation(nameCard, cardNum, m, y, c);
+
+                }
+
+                assert validator != null;
+                result = validator.validate();
+
+                if (!result) {
+
+                    Toast.makeText(Checkout.this, "Invalid Card Details!", Toast.LENGTH_LONG).show();
+
+                } else {
+
+                    card.setCardNum(cardNum);
+                    card.setCvv(c);
+                    card.setExpiryMonth(m);
+                    card.setExpiryYear(y);
+                    card.setNameOnCard(nameCard);
+
+                    ref2.push().setValue(order);
+
+                    ref3.removeValue();
+
+                    ref4.push().setValue(card);
+                    Toast.makeText(Checkout.this, "Order Confirmed!", Toast.LENGTH_LONG).show();
+
+                }
 
 
 

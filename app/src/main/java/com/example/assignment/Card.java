@@ -3,15 +3,15 @@ package com.example.assignment;
 public class Card {
 
     String nameOnCard;
-    int cardNum;
-    int cvv;
+    String cardNum;
+    String cvv;
     int expiryMonth;
     int expiryYear;
 
 
     public Card(){}
 
-    public Card(String nameOnCard, int cardNum, int cvv, int expiryMonth, int expiryYear) {
+    public Card(String nameOnCard, String cardNum, String cvv, int expiryMonth, int expiryYear) {
         this.nameOnCard = nameOnCard;
         this.cardNum = cardNum;
         this.cvv = cvv;
@@ -27,19 +27,19 @@ public class Card {
         this.nameOnCard = nameOnCard;
     }
 
-    public int getCardNum() {
+    public String getCardNum() {
         return cardNum;
     }
 
-    public void setCardNum(int cardNum) {
+    public void setCardNum(String cardNum) {
         this.cardNum = cardNum;
     }
 
-    public int getCvv() {
+    public String getCvv() {
         return cvv;
     }
 
-    public void setCvv(int cvv) {
+    public void setCvv(String cvv) {
         this.cvv = cvv;
     }
 
