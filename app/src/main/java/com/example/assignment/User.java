@@ -2,7 +2,7 @@ package com.example.assignment;
 
 import com.google.firebase.database.Exclude;
 
-public class User {
+public class User implements UserType{
 
     private String email;
     private String firstName;
@@ -60,5 +60,10 @@ public class User {
     @Exclude
     public void setKey(String key) {
         this.key = key;
+    }
+
+    @Override
+    public String login() {
+        return null;
     }
 }

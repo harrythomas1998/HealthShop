@@ -25,6 +25,8 @@ public class Login extends AppCompatActivity {
     FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
+    User user1;
+    Admin admin1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +79,10 @@ public class Login extends AppCompatActivity {
 
                     Intent intToHome = new Intent(Login.this, AdminHome.class);
                     startActivity(intToHome);
+
+                    admin1 = new Admin();
+                    admin1.login();
+
                 }
                 else {
                     mFirebaseAuth.signInWithEmailAndPassword(emailText, passwordText).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
@@ -89,6 +95,8 @@ public class Login extends AppCompatActivity {
                             }
 
                             else{
+                                user1 = new User();
+                                user1.login();
                                 Intent intToHome = new Intent(Login.this, CustomerHome.class);
                                 startActivity(intToHome);
                             }
