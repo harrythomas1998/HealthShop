@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -68,6 +69,7 @@ public class ViewStockItemAdmin extends AppCompatActivity {
 
         if (stock <= 0) {
             state = noStock.stateOfStock();
+            Toast.makeText(ViewStockItemAdmin.this, "Stock needs to be updated", Toast.LENGTH_LONG).show();
         }
         else {
             state = hasStock.stateOfStock();

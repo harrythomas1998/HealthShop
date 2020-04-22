@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class CustomerHome extends AppCompatActivity {
 
-    Button bag, products, orders;
+    Button bag, products;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
