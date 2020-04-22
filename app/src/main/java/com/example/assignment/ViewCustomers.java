@@ -51,6 +51,7 @@ public class ViewCustomers extends AppCompatActivity  implements UsersAdapter.On
                     User user = snapshot1.getValue(User.class);
                     assert user != null;
                     user.setKey(snapshot1.getKey());
+
                     users.add(user);
                 }
 

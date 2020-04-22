@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static com.example.assignment.ShoppingCart.TOTAL;
@@ -33,6 +34,7 @@ public class Checkout extends AppCompatActivity implements ArrayInterface {
     Button b1;
 
     Order order;
+    Card card;
     ArrayList<StockItem> sItems;
 
     private FirebaseUser user;
@@ -54,6 +56,7 @@ public class Checkout extends AppCompatActivity implements ArrayInterface {
         b1 = findViewById(R.id.confirm_order_button);
 
         order = new Order();
+        card = new Card();
         sItems = new ArrayList<>();
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -73,10 +76,11 @@ public class Checkout extends AppCompatActivity implements ArrayInterface {
         cardAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s1.setAdapter(cardAdapter);
 
+
         s1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String method = s1.getSelectedItem().toString();
+                 String method = s1.getSelectedItem().toString();
 
                 order.setPaymentMethod(method);
             }
@@ -86,6 +90,9 @@ public class Checkout extends AppCompatActivity implements ArrayInterface {
 
             }
         });
+
+
+
         reference = FirebaseDatabase.getInstance().getReference().child("ShoppingCart").child(user.getUid());
 
         reference.addValueEventListener(new ValueEventListener() {
@@ -111,25 +118,40 @@ public class Checkout extends AppCompatActivity implements ArrayInterface {
         });
 
         ref2 = FirebaseDatabase.getInstance().getReference().child("Orders");
-
         ref3 = FirebaseDatabase.getInstance().getReference().child("ShoppingCart").child(user.getUid());
         ref3 = FirebaseDatabase.getInstance().getReference().child("ShoppingCart").child(user.getUid()).child("Orders");
+        ref4 = FirebaseDatabase.getInstance().getReference().child("Card").child(user.getUid());
+
+        order.setTotal(total);
+        order.setUser(user.getEmail());
+
 
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                order.setTotal(total);
-                order.setUser(user.getEmail());
+                String nameCard = nameOnCard.getText().toString();
+                int cardNum = Integer.parseInt(numCard.getText().toString());
+                int c = Integer.parseInt(cvv.getText().toString());
+                int y = Integer.parseInt(year.getText().toString());
+                int m = Integer.parseInt(month.getText().toString());
+
+                card.setCardNum(cardNum);
+                card.setCvv(c);
+                card.setExpiryMonth(m);
+                card.setExpiryYear(y);
+                card.setNameOnCard(nameCard);
 
                 ref2.push().setValue(order);
 
                 ref3.removeValue();
 
-                ref4.push().setValue(order);
-
+                ref4.push().setValue(card);
                 Toast.makeText(Checkout.this, "Order Confirmed!", Toast.LENGTH_LONG).show();
+
+
+
 
             }
 

@@ -1,9 +1,12 @@
 package com.example.assignment;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -84,9 +87,11 @@ public class ShoppingCart extends AppCompatActivity implements  ShoppingCartAdap
                 }
                 adapter.notifyDataSetChanged();
 
+
+
                 if(total > 50.0){
 
-                    totalNum.setText("Total: €" + total/.9);
+                    totalNum.setText("Total: €" + total*.9);
                 }
                 else{
 
@@ -111,7 +116,6 @@ public class ShoppingCart extends AppCompatActivity implements  ShoppingCartAdap
 
                 startActivity(i);
 
-                Toast.makeText(ShoppingCart.this, "Gone to next class", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -122,14 +126,38 @@ public class ShoppingCart extends AppCompatActivity implements  ShoppingCartAdap
     }
 
     @Override
-    public void onDeleteClick(int position) {
+    public void onDeleteClick(final int position) {
 
-        StockItem selectedItem = shoppingCart.get(position);
-        String selectedKey = selectedItem.getKey();
-        reference.child(selectedKey).removeValue();
-        removeItem(position);
 
-        Toast.makeText(this, "Product Removed", Toast.LENGTH_SHORT).show();
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ShoppingCart.this);
+        alertDialogBuilder.setTitle("Warning");
+        alertDialogBuilder.setMessage("Are you sure you want to delete this item?");
+        alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                StockItem selectedItem = shoppingCart.get(position);
+                String selectedKey = selectedItem.getKey();
+                reference.child(selectedKey).removeValue();
+                removeItem(position);
+
+                Toast.makeText(ShoppingCart.this, "Product Removed", Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
+        alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(ShoppingCart.this, "Your cart has not been changed", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        alertDialogBuilder.create().show();
+
+
+
+
 
     }
 
